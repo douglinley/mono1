@@ -1,6 +1,10 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Microsoft.VisualBasic;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Mono1.Injun;
+using Mono1.Injun.Systems;
+using System.Collections.Generic;
 
 namespace Mono1
 {
@@ -8,7 +12,11 @@ namespace Mono1
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
-        private Entity _dummy;
+        private Entity _player;
+        private List<Entity> _entities;
+        private InputSystem _inputSystem;
+        private MovementSystem _movementSystem;
+        private RenderSystem _renderSystem;
 
         const float MoveSpeed = 100f;
 
@@ -23,19 +31,21 @@ namespace Mono1
         {
             // TODO: Add your initialization logic here
 
+            _entities = new();
+            _inputSystem = new InputSystem();
+            _movementSystem = new();
+
             base.Initialize();
         }
 
         protected override void LoadContent()
         {
+            var texture = Content.Load<Texture2D>("face_dummy");
             _spriteBatch = new SpriteBatch(GraphicsDevice);
+            _renderSystem = new(_spriteBatch);
 
-            // TODO: use this.Content to load your game content here
-
-            _dummy = new(Content.Load<Texture2D>("face_dummy"));
-            _dummy.Sprite.Scale = 0.5f;
-            _dummy.Position = new Vector2(150, 150);
-
+            var player = EntityFactory.CreatePlayer(texture, new Vector2(100, 100));
+            _entities.Add(player);
         }
 
         protected override void Update(GameTime gameTime)
@@ -43,38 +53,8 @@ namespace Mono1
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            Vector2 direction = Vector2.Zero;
-
-            // TODO: Add your update logic here
-            var kbState = Keyboard.GetState();
-            if (kbState.IsKeyDown(Keys.D))
-            {
-                direction.X += 1;
-            }
-
-            if (kbState.IsKeyDown(Keys.A))
-            {
-                direction.X -= 1;
-            }
-
-            if (kbState.IsKeyDown(Keys.W))
-            {
-                direction.Y -= 1;
-            }
-
-            if (kbState.IsKeyDown(Keys.S))
-            {
-                direction.Y += 1;
-            }
-
-            if (direction != Vector2.Zero)
-            {
-                direction.Normalize();
-            }
-
-            _dummy.Velocity = direction * _dummy.Speed;
-
-            _dummy.Update(gameTime);
+            _inputSystem.Update(_entities, gameTime);
+            _movementSystem.Update(_entities, gameTime);
 
             base.Update(gameTime);
         }
@@ -86,8 +66,8 @@ namespace Mono1
             // TODO: Add your drawing code here
             _spriteBatch.Begin();
 
-            _dummy.Draw(_spriteBatch);
-
+            _renderSystem.Draw(_entities);
+           
             _spriteBatch.End();
 
             base.Draw(gameTime);
