@@ -1,8 +1,10 @@
-﻿using Microsoft.Xna.Framework;
+﻿using InjunEngine.Components;
+using InjunEngine.ECS;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Mono1.Injun.Components;
+using Mono1.TheGame.Components;
 
-namespace Mono1.Injun
+namespace Mono1.TheGame
 {
     public static class EntityFactory
     {

@@ -1,6 +1,6 @@
-﻿using Mono1.Injun.Interfaces;
+﻿using InjunEngine.ECS.Interfaces;
 
-namespace Mono1.Injun.Components
+namespace Mono1.TheGame.Components
 {
     public class HealthComponent : IComponent
     {

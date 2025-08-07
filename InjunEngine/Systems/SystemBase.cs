@@ -1,7 +1,7 @@
-﻿using Microsoft.Xna.Framework;
-using System.Collections.Generic;
+﻿using InjunEngine.ECS;
+using Microsoft.Xna.Framework;
 
-namespace Mono1.Injun.Systems
+namespace InjunEngine.Systems
 {
     public abstract class SystemBase
     {

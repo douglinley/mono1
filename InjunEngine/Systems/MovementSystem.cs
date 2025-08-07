@@ -1,8 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
-using Mono1.Injun.Components;
-using System.Collections.Generic;
+using InjunEngine.Components;
+using InjunEngine.ECS;
 
-namespace Mono1.Injun.Systems
+namespace InjunEngine.Systems
 {
     public class MovementSystem : SystemBase
     {

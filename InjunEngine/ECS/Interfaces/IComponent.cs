@@ -1,4 +1,4 @@
-﻿namespace Mono1.Injun.Interfaces
+﻿namespace InjunEngine.ECS.Interfaces
 {
     public interface IComponent
     { }

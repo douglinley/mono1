@@ -1,10 +1,12 @@
-﻿using Microsoft.VisualBasic;
+﻿using InjunEngine.ECS;
+using InjunEngine.Systems;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Mono1.Injun;
-using Mono1.Injun.Systems;
+using Mono1.TheGame;
+using Mono1.TheGame.Systems;
 using System.Collections.Generic;
+
 
 namespace Mono1
 {

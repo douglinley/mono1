@@ -1,9 +1,12 @@
-﻿using Microsoft.Xna.Framework;
+﻿using InjunEngine.Components;
+using InjunEngine.ECS;
+using InjunEngine.Systems;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
-using Mono1.Injun.Components;
+using Mono1.TheGame.Components;
 using System.Collections.Generic;
 
-namespace Mono1.Injun.Systems
+namespace Mono1.TheGame.Systems
 {
     public class InputSystem : SystemBase
     {

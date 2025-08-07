@@ -1,8 +1,6 @@
-﻿using Mono1.Injun.Interfaces;
-using System;
-using System.Collections.Generic;
+﻿using InjunEngine.ECS.Interfaces;
 
-namespace Mono1.Injun;
+namespace InjunEngine.ECS;
 
 public class Entity
 {
